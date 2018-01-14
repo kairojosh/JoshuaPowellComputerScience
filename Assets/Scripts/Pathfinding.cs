@@ -45,7 +45,7 @@ public class Pathfinding : MonoBehaviour {
 			closedNodes.Add (activeNode);
 
 			if (activeNode == targetNode) {
-				FindPath (startNode, targetNode);
+				ReturnPath (startNode, targetNode);
 				return;
 
 			}
@@ -93,7 +93,7 @@ public class Pathfinding : MonoBehaviour {
 
 	}
 
-	void FindPath(Node startNode, Node endNode){
+	void ReturnPath(Node startNode, Node endNode){
 		List<Node> Path = new List<Node> ();
 		Node currentNode = endNode;
 

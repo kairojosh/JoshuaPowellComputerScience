@@ -234,6 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c06fff119fe04c8a6d7df6771691c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 2048
   bulletPrefab: {fileID: 1149504759981834, guid: b75f4c84c42f4df4db9c3fcb9143efdc,
     type: 2}
   bulletSpawn: {fileID: 4384063099967106}

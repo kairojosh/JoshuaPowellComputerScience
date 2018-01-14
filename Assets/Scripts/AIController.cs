@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIController : MonoBehaviour {
-	//References
+    //References
+    public LayerMask playerMask;
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
     public GameObject target;
@@ -30,6 +31,7 @@ public class AIController : MonoBehaviour {
      void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        TimeStamp = Time.time;
 
     }
 
@@ -45,9 +47,19 @@ public class AIController : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
+        //Firing sort of works, but breaks occasionally, needs fixing
+    
+        if(Time.time >= TimeStamp ){
+            if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, 10, playerMask))
+            {
+                Fire();
+                
+            }
+          
 
-       
- 
+        }
+   
+
         if (pathReference.path != null)
         {
             for (int i = 0; i < pathReference.path.Count - 1; i++)
@@ -66,7 +78,7 @@ public class AIController : MonoBehaviour {
         }
     
      
-      /*
+      /* implement this in college
         //Determines if the player is moving backwards, sideways or forwards
         if (Vector3.Dot(transform.forward, motion) > .4)
 		{
