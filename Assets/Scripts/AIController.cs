@@ -17,19 +17,13 @@ public class AIController : MonoBehaviour {
     public float rotationSpeed = 1000f;
     public float stopDistance = 1f;
 
+    public Transform player;
     public GridScript pathReference;
     //Local Variables
     private Quaternion targetRotation; 
 	private float TimeStamp;
 	private float speed = 5f;
     private CharacterController controller;
-    private float localVelocity
-    {
-        get
-        {
-            return velocity;
-        }
-    }
 
 
 
@@ -52,22 +46,18 @@ public class AIController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-        if (controller.velocity.magnitude < velocity)
-  //DO code here that regulates the speed or research some anti clipping shit
-
+       
  
         if (pathReference.path != null)
         {
             for (int i = 0; i < pathReference.path.Count - 1; i++)
             {
-                Vector3 difference = pathReference.path[0].position - gameObject.transform.position;
+                Vector3 difference = player.position - gameObject.transform.position;
                 difference.Normalize();
                 targetRotation = Quaternion.LookRotation(difference);
                 transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
 
                 Vector3 nodeAIdifference= (pathReference.path[i].position - gameObject.transform.position).normalized;
-                
                 controller.Move(nodeAIdifference * Time.deltaTime * velocity);
 
          

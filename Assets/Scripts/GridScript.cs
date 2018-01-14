@@ -6,6 +6,7 @@ public class GridScript : MonoBehaviour {
 
 	//public Transform player;
 	public LayerMask outOfBoundsMask;
+    public LayerMask playerCollisionMask;
 	public Vector2 gridWorldSize;
 	public float nodeDiameter;
 	Node[,] grid;
@@ -80,7 +81,7 @@ public class GridScript : MonoBehaviour {
 			for (int y = 0; y < gridAmountY; y++) {
 				//Node radius is added as you start in the very bottom right, node in the center of the first node
 				Vector3 scanPoint = startPosition + Vector3.right * ((x * nodeDiameter) + nodeDiameter / 2) + Vector3.forward * ((y * nodeDiameter) + nodeDiameter / 2);
-				bool inBounds = !(Physics.CheckSphere (scanPoint, (nodeDiameter / 2),outOfBoundsMask));
+				bool inBounds = !(Physics.CheckSphere (scanPoint, (nodeDiameter / 2),outOfBoundsMask)) && !(Physics.CheckSphere(scanPoint, (nodeDiameter / 2), playerCollisionMask));
 				grid[x,y] = new Node(inBounds, scanPoint, x,y);
 
 			}

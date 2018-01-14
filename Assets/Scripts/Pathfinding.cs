@@ -9,6 +9,8 @@ public class Pathfinding : MonoBehaviour {
 
 	void Update(){
 		FindPath (AI.position, player.position);
+
+
 	}
 
 	void Awake(){
@@ -26,7 +28,7 @@ public class Pathfinding : MonoBehaviour {
 		openNodes.Add (startNode);
 
 		//Searches through all open nodes to find the node with lowest fCost
-		while (openNodes.Count > 0) {
+		while (openNodes.Count > 0 &&  targetNode.inBounds == true) {
 
             //Purely here for the first step
 			Node activeNode = openNodes [0];
